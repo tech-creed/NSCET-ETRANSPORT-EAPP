@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "645150436359",
+    "firebase_url": "https://nscet-iot-transport-default-rtdb.firebaseio.com",
+    "project_id": "nscet-iot-transport",
+    "storage_bucket": "nscet-iot-transport.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:645150436359:android:3931ede22975dacf1d4ea2",
+        "android_client_info": {
+          "package_name": "com.example.etransport_nscet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "645150436359-3e0q5r7mi2d7skdh0m6g01dq8jkb0dng.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzRFveQcU1vg-3FkLLbdAxDmrzSzE1zSI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "645150436359-3e0q5r7mi2d7skdh0m6g01dq8jkb0dng.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

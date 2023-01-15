@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>645150436359-qb9b1ln218j8aasm4ao4ffha1p3q62g2.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.645150436359-qb9b1ln218j8aasm4ao4ffha1p3q62g2</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAalhWHY7O_fhbQmBbPrBzJLbfzwLA70eU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>645150436359</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.etransportNscet</string>
+	<key>PROJECT_ID</key>
+	<string>nscet-iot-transport</string>
+	<key>STORAGE_BUCKET</key>
+	<string>nscet-iot-transport.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:645150436359:ios:321b888f9bfc19cc1d4ea2</string>
+	<key>DATABASE_URL</key>
+	<string>https://nscet-iot-transport-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
