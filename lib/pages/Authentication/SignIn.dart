@@ -25,7 +25,7 @@ class _SignInState extends State<SignIn> {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("images/bg2.png"),
+            image: AssetImage("images/blue.png"),
             fit: BoxFit.cover,
           ),
         ),
@@ -35,11 +35,19 @@ class _SignInState extends State<SignIn> {
           children: [
             const SizedBox(height: 150.0),
             const Text(
-              "NSCET AMS",
+              "NSCET",
               style: TextStyle(
                   fontFamily: 'Times New Roman',
                   fontSize: 40,
-                  color: Color.fromRGBO(9, 46, 94, 1)),
+                  color: Color.fromRGBO(0, 45, 77, 1)),
+              textAlign: TextAlign.center,
+            ),
+            const Text(
+              "E-TRANSPORT",
+              style: TextStyle(
+                  fontFamily: 'Times New Roman',
+                  fontSize: 40,
+                  color: Color.fromRGBO(0, 45, 77, 1)),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 40.0),
@@ -53,14 +61,14 @@ class _SignInState extends State<SignIn> {
                       decoration: const InputDecoration(
                           icon: Icon(
                             Icons.email_outlined,
-                            color: Color.fromRGBO(245, 102, 83, 1),
+                            color: Color.fromRGBO(78, 138, 186, 1),
                           ),
                           labelText: 'Email Address',
                           labelStyle:
                               TextStyle(color: Color.fromRGBO(9, 46, 94, 1)),
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
-                                color: Color.fromRGBO(245, 102, 83, 1),
+                                color: Color.fromRGBO(78, 138, 186, 1),
                                 width: 1.5),
                           ),
                           focusedBorder: UnderlineInputBorder(
@@ -82,14 +90,14 @@ class _SignInState extends State<SignIn> {
                     decoration: const InputDecoration(
                       icon: Icon(
                         Icons.lock_outline,
-                        color: Color.fromRGBO(245, 102, 83, 1),
+                        color: Color.fromRGBO(78, 138, 186, 1),
                       ),
                       labelText: 'Password',
                       labelStyle:
                           TextStyle(color: Color.fromRGBO(9, 46, 94, 1)),
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
-                            color: Color.fromRGBO(245, 102, 83, 1), width: 1.5),
+                            color: Color.fromRGBO(78, 138, 186, 1), width: 1.5),
                       ),
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
@@ -107,7 +115,7 @@ class _SignInState extends State<SignIn> {
                   const SizedBox(height: 20.0),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          primary: const Color.fromRGBO(245, 102, 83, 1),
+                          primary: const Color.fromRGBO(78, 138, 186, 1),
                           padding: const EdgeInsets.fromLTRB(25, 8, 25, 8)),
                       onPressed: () async {
                         if (_formkey.currentState!.validate()) {

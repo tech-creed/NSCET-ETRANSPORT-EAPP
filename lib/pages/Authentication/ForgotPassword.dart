@@ -25,7 +25,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         body: Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("images/bg5.png"),
+          image: AssetImage("images/blue.png"),
           fit: BoxFit.cover,
         ),
       ),
@@ -34,7 +34,15 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           children: <Widget>[
             const SizedBox(height: 150.0),
             const Text(
-              "NSCET AMS",
+              "NSCET",
+              style: TextStyle(
+                  fontFamily: 'Times New Roman',
+                  fontSize: 40,
+                  color: Color.fromRGBO(0, 45, 77, 1)),
+              textAlign: TextAlign.center,
+            ),
+            const Text(
+              "E-TRANSPORT",
               style: TextStyle(
                   fontFamily: 'Times New Roman',
                   fontSize: 40,
@@ -61,11 +69,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       decoration: const InputDecoration(
                         icon: Icon(
                           Icons.email_outlined,
-                          color: Color.fromRGBO(4, 156, 148, 1),
+                          color: Color.fromRGBO(78, 138, 186, 1),
                         ),
                         labelText: 'Email Address',
                         labelStyle:
-                            TextStyle(color: Color.fromRGBO(0, 74, 70, 1)),
+                            TextStyle(color: Color.fromRGBO(0, 45, 77, 1)),
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
                               color: Color.fromRGBO(78, 138, 186, 1),
@@ -73,7 +81,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         ),
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(4, 156, 148, 1),
+                              color: Color.fromRGBO(9, 83, 145, 1),
                               width: 1.5),
                         ),
                       ),

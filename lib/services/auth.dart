@@ -13,7 +13,7 @@ class AuthService {
   Stream<User?> get user => _auth.userChanges();
 
   // Register with email and passord
-  Future register(email, password, name, role, dept) async {
+  Future register(email, password, name, role, dept, regno) async {
     final userDb = database.child("/users");
     try {
       UserCredential userCredential = await _auth
@@ -25,6 +25,7 @@ class AuthService {
         'name': name,
         'role': role,
         'dept': dept,
+        'regno': regno,
       });
 
       return null;

@@ -19,6 +19,7 @@ class _RegisterState extends State<Register> {
   String role = '';
   String dept = '';
   String name = '';
+  String regno = '';
   final _formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class _RegisterState extends State<Register> {
         body: Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("images/bg4.png"),
+          image: AssetImage("images/blue.png"),
           fit: BoxFit.cover,
         ),
       ),
@@ -34,11 +35,19 @@ class _RegisterState extends State<Register> {
           ListView(padding: const EdgeInsets.fromLTRB(15, 0, 15, 0), children: [
         const SizedBox(height: 60.0),
         const Text(
-          "NSCET AMS",
+          "NSCET",
           style: TextStyle(
               fontFamily: 'Times New Roman',
               fontSize: 40,
-              color: Color.fromRGBO(19, 69, 0, 1)),
+              color: Color.fromRGBO(0, 45, 77, 1)),
+          textAlign: TextAlign.center,
+        ),
+        const Text(
+          "E-TRANSPORT",
+          style: TextStyle(
+              fontFamily: 'Times New Roman',
+              fontSize: 40,
+              color: Color.fromRGBO(0, 45, 77, 1)),
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 30.0),
@@ -47,7 +56,7 @@ class _RegisterState extends State<Register> {
           style: TextStyle(
               fontFamily: 'Times New Roman',
               fontSize: 32,
-              color: Color.fromRGBO(92, 143, 1, 1)),
+              color: const Color.fromRGBO(35, 123, 196, 1)),
           textAlign: TextAlign.center,
         ),
         Form(
@@ -60,17 +69,17 @@ class _RegisterState extends State<Register> {
                   decoration: const InputDecoration(
                     icon: Icon(
                       Icons.email_outlined,
-                      color: Color.fromRGBO(12, 46, 2, 1),
+                      color: Color.fromRGBO(78, 138, 186, 1),
                     ),
                     labelText: 'Email Address',
-                    labelStyle: TextStyle(color: Color.fromRGBO(12, 46, 2, 1)),
+                    labelStyle: TextStyle(color: Color.fromRGBO(0, 45, 77, 1)),
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
-                          color: Color.fromRGBO(143, 197, 46, 1), width: 1.5),
+                          color: Color.fromRGBO(9, 83, 145, 1), width: 1.5),
                     ),
                     focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
-                          color: Color.fromRGBO(12, 46, 2, 1), width: 1.5),
+                          color: Color.fromRGBO(78, 138, 186, 1), width: 1.5),
                     ),
                   ),
                   onChanged: (val) {
@@ -84,17 +93,17 @@ class _RegisterState extends State<Register> {
                   decoration: const InputDecoration(
                     icon: Icon(
                       Icons.person_outline,
-                      color: Color.fromRGBO(12, 46, 2, 1),
+                      color: Color.fromRGBO(78, 138, 186, 1),
                     ),
                     labelText: 'Name',
-                    labelStyle: TextStyle(color: Color.fromRGBO(12, 46, 2, 1)),
+                    labelStyle: TextStyle(color: Color.fromRGBO(0, 45, 77, 1)),
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
-                          color: Color.fromRGBO(143, 197, 46, 1), width: 1.5),
+                          color: Color.fromRGBO(9, 83, 145, 1), width: 1.5),
                     ),
                     focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
-                          color: Color.fromRGBO(12, 46, 2, 1), width: 1.5),
+                          color: Color.fromRGBO(78, 138, 186, 1), width: 1.5),
                     ),
                   ),
                   onChanged: (val) {
@@ -110,17 +119,17 @@ class _RegisterState extends State<Register> {
                   decoration: const InputDecoration(
                     icon: Icon(
                       Icons.lock_outline,
-                      color: Color.fromRGBO(12, 46, 2, 1),
+                      color: Color.fromRGBO(78, 138, 186, 1),
                     ),
                     labelText: 'Choose Password',
-                    labelStyle: TextStyle(color: Color.fromRGBO(12, 46, 2, 1)),
+                    labelStyle: TextStyle(color: Color.fromRGBO(0, 45, 77, 1)),
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
-                          color: Color.fromRGBO(143, 197, 46, 1), width: 1.5),
+                          color: Color.fromRGBO(9, 83, 145, 1), width: 1.5),
                     ),
                     focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
-                          color: Color.fromRGBO(12, 46, 2, 1), width: 1.5),
+                          color: Color.fromRGBO(78, 138, 186, 1), width: 1.5),
                     ),
                   ),
                   obscureText: true,
@@ -130,6 +139,30 @@ class _RegisterState extends State<Register> {
                     });
                   }),
               const SizedBox(height: 10.0),
+              if(role == "Parent")
+                  TextFormField(
+                  validator: (val) => val!.isEmpty ? 'Enter your Child Register Number' : null,
+                  decoration: const InputDecoration(
+                    icon: Icon(
+                      Icons.app_registration_outlined,
+                      color: Color.fromRGBO(78, 138, 186, 1),
+                    ),
+                    labelText: 'Child Register Number',
+                    labelStyle: TextStyle(color: Color.fromRGBO(0, 45, 77, 1)),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Color.fromRGBO(9, 83, 145, 1), width: 1.5),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Color.fromRGBO(78, 138, 186, 1), width: 1.5),
+                    ),
+                  ),
+                  onChanged: (val) {
+                    setState(() {
+                      regno = val;
+                    });
+                  }),
               DropdownButtonFormField(
                 validator: (val) {
                   if (val == null) {
@@ -141,27 +174,27 @@ class _RegisterState extends State<Register> {
                 decoration: const InputDecoration(
                   icon: Icon(
                     Icons.badge_outlined,
-                    color: Color.fromRGBO(12, 46, 2, 1),
+                    color: Color.fromRGBO(78, 138, 186, 1),
                   ),
                   labelText: 'Role',
-                  labelStyle: TextStyle(color: Color.fromRGBO(12, 46, 2, 1)),
+                  labelStyle: TextStyle(color: Color.fromRGBO(0, 45, 77, 1)),
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
-                        color: Color.fromRGBO(143, 197, 46, 1), width: 1.5),
+                        color: Color.fromRGBO(9, 83, 145, 1), width: 1.5),
                   ),
                   focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
-                        color: Color.fromRGBO(12, 46, 2, 1), width: 1.5),
+                        color: Color.fromRGBO(78, 138, 186, 1), width: 1.5),
                   ),
                 ),
                 items: const [
                   DropdownMenuItem(
-                    child: Text("HOD"),
-                    value: "HOD",
+                    child: Text("Faculty"),
+                    value: "Faculty",
                   ),
                   DropdownMenuItem(
-                    child: Text("Class Incharge"),
-                    value: "CI",
+                    child: Text("Parent"),
+                    value: "Parent",
                   )
                 ],
                 onChanged: (val) {
@@ -182,17 +215,17 @@ class _RegisterState extends State<Register> {
                 decoration: const InputDecoration(
                   icon: Icon(
                     Icons.bookmark_outline,
-                    color: Color.fromRGBO(12, 46, 2, 1),
+                    color: Color.fromRGBO(78, 138, 186, 1),
                   ),
                   labelText: 'Department',
-                  labelStyle: TextStyle(color: Color.fromRGBO(12, 46, 2, 1)),
+                  labelStyle: TextStyle(color: Color.fromRGBO(0, 45, 77, 1)),
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
-                        color: Color.fromRGBO(143, 197, 46, 1), width: 1.5),
+                        color: Color.fromRGBO(9, 83, 145, 1), width: 1.5),
                   ),
                   focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
-                        color: Color.fromRGBO(12, 46, 2, 1), width: 1.5),
+                        color: Color.fromRGBO(78, 138, 186, 1), width: 1.5),
                   ),
                 ),
                 items: const [
@@ -230,12 +263,12 @@ class _RegisterState extends State<Register> {
               const SizedBox(height: 20.0),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    primary: const Color.fromRGBO(92, 143, 1, 1),
+                    primary: const Color.fromRGBO(35, 123, 196, 1),
                     padding: const EdgeInsets.fromLTRB(25, 8, 25, 8)),
                 onPressed: () async {
                   if (_formkey.currentState!.validate()) {
                     dynamic result =
-                        await _auth.register(email, password, name, role, dept);
+                        await _auth.register(email, password, name, role, dept, regno);
                     if (result != null) {
                       ScaffoldMessenger.of(context)
                           .showSnackBar(getSnackBar(result.message.toString()));

@@ -20,7 +20,7 @@ class _VerificationPageState extends State<VerificationPage> {
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("images/bg3.png"),
+              image: AssetImage("images/red.png"),
               fit: BoxFit.cover,
             ),
           ),

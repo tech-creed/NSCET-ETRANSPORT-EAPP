@@ -54,7 +54,7 @@ class _SideBarnavState extends State<SideBarnav> {
                 children: [
                   const SizedBox(height: 20.0),
                   const Text(
-                    "NSCET AMS",
+                    "NSCET E-TRANSPORT",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 34,

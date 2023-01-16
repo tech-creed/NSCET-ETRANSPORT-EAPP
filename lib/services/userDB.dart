@@ -22,6 +22,7 @@ class UserData {
     String name = userDetails.value[userId]['name'];
     String dept = userDetails.value[userId]['dept'];
     String email = userDetails.value[userId]['email'];
+    String regno = userDetails.value[userId]['regno'];
 
     prefs.setString('userId', userId);
     prefs.setString('role', role);
@@ -29,5 +30,6 @@ class UserData {
     prefs.setString('name', name);
     prefs.setString('dept', dept);
     prefs.setString('email', email);
+    prefs.setString('regno', regno);
   }
 }
