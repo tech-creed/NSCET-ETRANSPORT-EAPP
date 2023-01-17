@@ -12,21 +12,23 @@ class SideBarnav extends StatefulWidget {
 }
 
 class _SideBarnavState extends State<SideBarnav> {
-  String? name;
-  String? role;
+  String? name = '';
+  String? role = '';
   String? dept = '';
-
+  String? regno = '';
+  
   void _setDetails() async {
     final prefs = await SharedPreferences.getInstance();
+    role = prefs.getString('role');
+    dept = prefs.getString('dept');
+    name = prefs.getString('name');
+    regno = prefs.getString('regno');
     setState(() {
-      role = prefs.getString('role');
-      dept = prefs.getString('dept');
-      if (role == 'CI') {
-        role = dept! + " - Class Incharge";
+      if (role == 'Parent') {
+        role = "$dept - $regno";
       } else {
-        role = dept! + " - HOD";
+        role = "$dept - Faculty";
       }
-      name = prefs.getString('name');
     });
   }
 
@@ -46,7 +48,7 @@ class _SideBarnavState extends State<SideBarnav> {
           Container(
             height: 170,
             decoration: const BoxDecoration(
-              color: Color.fromRGBO(199, 68, 109, 1),
+              color: Color.fromRGBO(0, 45, 77, 1),
             ),
             child: Align(
               alignment: FractionalOffset.center,
@@ -54,7 +56,7 @@ class _SideBarnavState extends State<SideBarnav> {
                 children: [
                   const SizedBox(height: 20.0),
                   const Text(
-                    "NSCET E-TRANSPORT",
+                    "E-TRANSPORT",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 34,
@@ -111,7 +113,7 @@ class _SideBarnavState extends State<SideBarnav> {
                           padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
                         ),
                         onPressed: () {
-                          Navigator.popAndPushNamed(context, "/profile");
+                          Navigator.popAndPushNamed(context, "/");
                         },
                         child: const Text(
                           "My Profile",
@@ -129,7 +131,7 @@ class _SideBarnavState extends State<SideBarnav> {
           const SizedBox(height: 10.0),
           ListTile(
             title: const Text(
-              "Classes",
+              "Track My Bus",
               style: TextStyle(
                 fontSize: 20,
                 color: Color.fromRGBO(27, 27, 27, 1),
@@ -137,13 +139,13 @@ class _SideBarnavState extends State<SideBarnav> {
               ),
             ),
             onTap: () {
-              Navigator.popAndPushNamed(context, "/classes");
+              Navigator.popAndPushNamed(context, "/");
             },
           ),
           const SizedBox(height: 20.0),
           ListTile(
             title: const Text(
-              "Mark Attendence",
+              "My Attendance Report",
               style: TextStyle(
                 fontSize: 20,
                 color: Color.fromRGBO(27, 27, 27, 1),
@@ -151,13 +153,13 @@ class _SideBarnavState extends State<SideBarnav> {
               ),
             ),
             onTap: () {
-              Navigator.popAndPushNamed(context, "/markAttendence");
+              Navigator.popAndPushNamed(context, "/");
             },
           ),
           const SizedBox(height: 20.0),
           ListTile(
             title: const Text(
-              "Report",
+              "Bus Incharge Contact",
               style: TextStyle(
                 fontSize: 20,
                 color: Color.fromRGBO(27, 27, 27, 1),
@@ -165,13 +167,13 @@ class _SideBarnavState extends State<SideBarnav> {
               ),
             ),
             onTap: () {
-              Navigator.popAndPushNamed(context, "/todayReport");
+              Navigator.popAndPushNamed(context, "/");
             },
           ),
           const SizedBox(height: 20.0),
           ListTile(
             title: const Text(
-              "About",
+              "About Us",
               style: TextStyle(
                 fontSize: 20,
                 color: Color.fromRGBO(27, 27, 27, 1),
@@ -179,19 +181,19 @@ class _SideBarnavState extends State<SideBarnav> {
               ),
             ),
             onTap: () {
-              Navigator.popAndPushNamed(context, "/about");
+              Navigator.popAndPushNamed(context, "/");
             },
           ),
-          const SizedBox(height: 20.0),
-          const Expanded(
-            child: Align(
-              alignment: FractionalOffset.bottomCenter,
-              child: Image(
-                image: AssetImage('images/7thsense.png'),
-                width: 160,
-              ),
-            ),
-          )
+          // const SizedBox(height: 20.0),
+          // const Expanded(
+          //   child: Align(
+          //     alignment: FractionalOffset.bottomCenter,
+          //     child: Image(
+          //       image: AssetImage('images/7thsense.png'),
+          //       width: 160,
+          //     ),
+          //   ),
+          // )
         ],
       ),
     );

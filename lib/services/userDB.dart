@@ -1,21 +1,21 @@
 // ignore_for_file: file_names
 
+import 'dart:math';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserData {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final database = FirebaseDatabase.instance.reference();
+  final database = FirebaseDatabase.instance.ref();
 
   void loadData2Local() async {
     final userDb = database.child("/users");
     final prefs = await SharedPreferences.getInstance();
 
-    dynamic userDetails = await userDb
-        .orderByChild('user_id')
-        .equalTo(_auth.currentUser!.uid)
-        .once();
+    dynamic userDetails = await userDb.orderByChild('user_id').equalTo(_auth.currentUser!.uid).get();
+    
     String userId = userDetails.value.entries.elementAt(0).key;
     String role = userDetails.value[userId]['role'];
     String authUserId = userDetails.value[userId]['user_id'];
@@ -23,7 +23,7 @@ class UserData {
     String dept = userDetails.value[userId]['dept'];
     String email = userDetails.value[userId]['email'];
     String regno = userDetails.value[userId]['regno'];
-
+    
     prefs.setString('userId', userId);
     prefs.setString('role', role);
     prefs.setString('authUserId', authUserId);

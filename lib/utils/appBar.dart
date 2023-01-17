@@ -6,7 +6,7 @@ import 'package:etransport_nscet/services/auth.dart';
 
 AppBar getAppbar(context, titleName, {isLogout = false}) {
   return AppBar(
-      backgroundColor: const Color.fromRGBO(199, 68, 109, 1),
+      backgroundColor: Color.fromRGBO(0, 45, 77, 1),
       foregroundColor: const Color.fromRGBO(255, 255, 255, 1),
       title: Text(titleName),
       elevation: 1.00,
@@ -14,7 +14,7 @@ AppBar getAppbar(context, titleName, {isLogout = false}) {
         isLogout
             ? ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: const Color.fromRGBO(199, 68, 109, 1),
+                  primary: Color.fromRGBO(0, 45, 77, 1),
                 ),
                 onPressed: () async {
                   SharedPreferences preferences =
@@ -31,13 +31,13 @@ AppBar getAppbar(context, titleName, {isLogout = false}) {
               )
             : ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: const Color.fromRGBO(199, 68, 109, 1),
+                  primary: Color.fromRGBO(0, 45, 77, 1),
                 ),
                 onPressed: () {
                   Navigator.pop(context);
                 },
                 child: Row(
-                  children: const [Icon(Icons.arrow_back), Text(" Back")],
+                  children: const [Icon(Icons.arrow_back), Text("Back")],
                 ),
               )
       ]);

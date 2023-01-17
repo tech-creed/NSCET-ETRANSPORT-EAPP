@@ -59,38 +59,64 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: const SideBarnav(),
-        appBar: getAppbar(context, "NSCET AMS", isLogout: true),
+        appBar: getAppbar(context, "NSCET", isLogout: true),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: Icon(Icons.map, color: Colors.white, size: 29,),
+          backgroundColor: Color.fromRGBO(0, 45, 77, 1),
+          tooltip: 'Your Bus Map',
+          elevation: 5,
+          splashColor: Color.fromARGB(255, 33, 118, 175),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        
         body: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
+            Container(
                   margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                  width: 150,
+                  width: 380,
                   height: 150,
                   child: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
-                        Color.fromRGBO(219, 105, 141, 1),
+                        Color.fromARGB(255, 33, 118, 175),
                       ),
                       alignment: Alignment.center,
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, "/profile");
+                      Navigator.pushNamed(context, "/");
                     },
-                    child: Column(
-                      children: const [
-                        Icon(Icons.person, size: 100.0),
-                        Text(
-                          "PROFILE",
-                          style: TextStyle(fontSize: 25.0),
+                    child: Row(
+                      children: [
+                        const Expanded(child: Icon(Icons.bus_alert_outlined, size: 70.0)),
+                        Expanded(child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                          RichText(text: const TextSpan(
+                              style: TextStyle(color: Color.fromARGB(255, 255, 255, 255), fontSize: 25),
+                              children: <TextSpan>[
+                                TextSpan(text: 'Status : '),
+                                TextSpan(text: 'Online', style: TextStyle(color: Color.fromARGB(255, 33, 243, 61)))
+                              ],
+                          ),
+                          ),
+
+                          SizedBox(height: 15.0),
+                          const Text(
+                            "Stop : Muthu Nagar",
+                            style: TextStyle(fontSize: 20.0),
+                          ),
+                          ]),
                         )
+                        
                       ],
                     ),
                   ),
                 ),
-                Padding(padding: EdgeInsets.all(10)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
                   width: 150,
@@ -116,11 +142,6 @@ class Home extends StatelessWidget {
                     ),
                   ),
                 ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
                   width: 150,
@@ -150,7 +171,12 @@ class Home extends StatelessWidget {
                     ),
                   ),
                 ),
-                Padding(padding: EdgeInsets.all(10)),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                // Padding(padding: EdgeInsets.all(10)),
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
                   width: 150,
@@ -177,7 +203,7 @@ class Home extends StatelessWidget {
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ));
   }
