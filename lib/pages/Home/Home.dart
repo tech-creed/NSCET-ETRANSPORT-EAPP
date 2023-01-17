@@ -70,16 +70,17 @@ class Home extends StatelessWidget {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         
-        body: Column(
+        body: SingleChildScrollView(child: Stack(children: [
+          Column(
           children: [
             Container(
                   margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                  width: 380,
+                  width: 560,
                   height: 150,
                   child: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
-                        Color.fromARGB(255, 33, 118, 175),
+                        Color.fromARGB(209, 204, 137, 43),
                       ),
                       alignment: Alignment.center,
                     ),
@@ -101,10 +102,14 @@ class Home extends StatelessWidget {
                               ],
                           ),
                           ),
-
-                          SizedBox(height: 15.0),
+                          SizedBox(height: 10.0),
                           const Text(
                             "Stop : Muthu Nagar",
+                            style: TextStyle(fontSize: 20.0),
+                          ),
+                          SizedBox(height: 10.0),
+                          const Text(
+                            "Arrivies In : 10 min",
                             style: TextStyle(fontSize: 20.0),
                           ),
                           ]),
@@ -124,18 +129,18 @@ class Home extends StatelessWidget {
                   child: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
-                        Color.fromRGBO(219, 105, 141, 1),
+                        Color.fromARGB(255, 7, 90, 150),
                       ),
                       alignment: Alignment.center,
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, "/classes");
+                      Navigator.pushNamed(context, "/");
                     },
                     child: Column(
                       children: const [
                         Icon(Icons.class_, size: 100.0),
                         Text(
-                          "CLASSES",
+                          "My Report",
                           style: TextStyle(fontSize: 25.0),
                         )
                       ],
@@ -149,24 +154,20 @@ class Home extends StatelessWidget {
                   child: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
-                        Color.fromRGBO(219, 105, 141, 1),
+                        Color.fromARGB(255, 7, 90, 150),
                       ),
                       alignment: Alignment.center,
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, "/markAttendence");
+                      Navigator.pushNamed(context, "/");
                     },
                     child: Column(
                       children: const [
-                        Icon(Icons.present_to_all, size: 90.0),
+                        Icon(Icons.call, size: 80.0),
                         Text(
-                          "MARK",
+                          "Bus Incharge",
                           style: TextStyle(fontSize: 25.0),
                         ),
-                        Text(
-                          "ATTENDANCE",
-                          style: TextStyle(fontSize: 18.0),
-                        )
                       ],
                     ),
                   ),
@@ -184,12 +185,12 @@ class Home extends StatelessWidget {
                   child: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
-                        Color.fromRGBO(219, 105, 141, 1),
+                        Color.fromARGB(255, 7, 90, 150),
                       ),
                       alignment: Alignment.center,
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, "/todayReport");
+                      Navigator.pushNamed(context, "/");
                     },
                     child: Column(
                       children: const [
@@ -202,9 +203,36 @@ class Home extends StatelessWidget {
                     ),
                   ),
                 ),
+                Container(
+                  margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  width: 150,
+                  height: 150,
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                        Color.fromARGB(255, 7, 90, 150),
+                      ),
+                      alignment: Alignment.center,
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/");
+                    },
+                    child: Column(
+                      children: const [
+                        Icon(Icons.map_rounded, size: 100.0),
+                        Text(
+                          "Bus Track",
+                          style: TextStyle(fontSize: 25.0),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ],
-        ));
+        )
+        ]),)
+         );
   }
 }
