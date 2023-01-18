@@ -16,6 +16,8 @@ class _SideBarnavState extends State<SideBarnav> {
   String? role = '';
   String? dept = '';
   String? regno = '';
+  String? assigned_role = '';
+
   
   void _setDetails() async {
     final prefs = await SharedPreferences.getInstance();
@@ -23,6 +25,8 @@ class _SideBarnavState extends State<SideBarnav> {
     dept = prefs.getString('dept');
     name = prefs.getString('name');
     regno = prefs.getString('regno');
+    assigned_role = prefs.getString('assigned');
+
     setState(() {
       if (role == 'Parent') {
         role = "$dept - $regno";
@@ -129,7 +133,8 @@ class _SideBarnavState extends State<SideBarnav> {
             ),
           ),
           const SizedBox(height: 10.0),
-          ListTile(
+          if(assigned_role == ' ')...[
+            ListTile(
             title: const Text(
               "Track My Bus",
               style: TextStyle(
@@ -145,7 +150,37 @@ class _SideBarnavState extends State<SideBarnav> {
           const SizedBox(height: 20.0),
           ListTile(
             title: const Text(
-              "My Attendance Report",
+              "Verifing Your Role",
+              style: TextStyle(
+                fontSize: 20,
+                color: Color.fromRGBO(27, 27, 27, 1),
+                fontFamily: 'Times New Roman',
+              ),
+            ),
+            onTap: () {
+              Navigator.popAndPushNamed(context, "/");
+            },
+          ),
+          ]
+          else if(assigned_role == 'SuperAdmin')...[
+            ListTile(
+            title: const Text(
+              "Assign HOD / Incharges",
+              style: TextStyle(
+                fontSize: 20,
+                color: Color.fromRGBO(27, 27, 27, 1),
+                fontFamily: 'Times New Roman',
+              ),
+            ),
+            onTap: () {
+              Navigator.popAndPushNamed(context, "/");
+            },
+          ),
+          ]
+          else if(assigned_role == 'TransportIncharge')...[
+            ListTile(
+            title: const Text(
+              "Tracker ID / Bus Details",
               style: TextStyle(
                 fontSize: 20,
                 color: Color.fromRGBO(27, 27, 27, 1),
@@ -159,6 +194,115 @@ class _SideBarnavState extends State<SideBarnav> {
           const SizedBox(height: 20.0),
           ListTile(
             title: const Text(
+              "Create Route",
+              style: TextStyle(
+                fontSize: 20,
+                color: Color.fromRGBO(27, 27, 27, 1),
+                fontFamily: 'Times New Roman',
+              ),
+            ),
+            onTap: () {
+              Navigator.popAndPushNamed(context, "/");
+            },
+          ),
+          const SizedBox(height: 20.0),
+          ListTile(
+            title: const Text(
+              "Assign Student / Bus Incharge",
+              style: TextStyle(
+                fontSize: 20,
+                color: Color.fromRGBO(27, 27, 27, 1),
+                fontFamily: 'Times New Roman',
+              ),
+            ),
+            onTap: () {
+              Navigator.popAndPushNamed(context, "/");
+            },
+          ), 
+          ]
+          else if(assigned_role == 'BusIncharge')...[
+            ListTile(
+            title: const Text(
+              "Mark Attendance",
+              style: TextStyle(
+                fontSize: 20,
+                color: Color.fromRGBO(27, 27, 27, 1),
+                fontFamily: 'Times New Roman',
+              ),
+            ),
+            onTap: () {
+              Navigator.popAndPushNamed(context, "/");
+            },
+          ),
+          ListTile(
+            title: const Text(
+              "Bus Strength Detail",
+              style: TextStyle(
+                fontSize: 20,
+                color: Color.fromRGBO(27, 27, 27, 1),
+                fontFamily: 'Times New Roman',
+              ),
+            ),
+            onTap: () {
+              Navigator.popAndPushNamed(context, "/");
+            },
+          ),
+          ListTile(
+            title: const Text(
+              "Todays Report",
+              style: TextStyle(
+                fontSize: 20,
+                color: Color.fromRGBO(27, 27, 27, 1),
+                fontFamily: 'Times New Roman',
+              ),
+            ),
+            onTap: () {
+              Navigator.popAndPushNamed(context, "/");
+            },
+          ),
+          ListTile(
+            title: const Text(
+              "Track My Bus",
+              style: TextStyle(
+                fontSize: 20,
+                color: Color.fromRGBO(27, 27, 27, 1),
+                fontFamily: 'Times New Roman',
+              ),
+            ),
+            onTap: () {
+              Navigator.popAndPushNamed(context, "/");
+            },
+          ),
+          ]
+          else if(assigned_role == 'HOD')...[
+            ListTile(
+            title: const Text(
+              "Generate Report",
+              style: TextStyle(
+                fontSize: 20,
+                color: Color.fromRGBO(27, 27, 27, 1),
+                fontFamily: 'Times New Roman',
+              ),
+            ),
+            onTap: () {
+              Navigator.popAndPushNamed(context, "/");
+            },
+          ),
+          ListTile(
+            title: const Text(
+              "My Report",
+              style: TextStyle(
+                fontSize: 20,
+                color: Color.fromRGBO(27, 27, 27, 1),
+                fontFamily: 'Times New Roman',
+              ),
+            ),
+            onTap: () {
+              Navigator.popAndPushNamed(context, "/");
+            },
+          ),
+          ListTile(
+            title: const Text(
               "Bus Incharge Contact",
               style: TextStyle(
                 fontSize: 20,
@@ -170,6 +314,48 @@ class _SideBarnavState extends State<SideBarnav> {
               Navigator.popAndPushNamed(context, "/");
             },
           ),
+          ]
+          else if(assigned_role == 'Faculty' || assigned_role == 'Parent')...[
+          ListTile(
+            title: const Text(
+              "My Report",
+              style: TextStyle(
+                fontSize: 20,
+                color: Color.fromRGBO(27, 27, 27, 1),
+                fontFamily: 'Times New Roman',
+              ),
+            ),
+            onTap: () {
+              Navigator.popAndPushNamed(context, "/");
+            },
+          ),
+          ListTile(
+            title: const Text(
+              "Bus Incharge Contact",
+              style: TextStyle(
+                fontSize: 20,
+                color: Color.fromRGBO(27, 27, 27, 1),
+                fontFamily: 'Times New Roman',
+              ),
+            ),
+            onTap: () {
+              Navigator.popAndPushNamed(context, "/");
+            },
+          ),
+          ListTile(
+            title: const Text(
+              "Track My Bus",
+              style: TextStyle(
+                fontSize: 20,
+                color: Color.fromRGBO(27, 27, 27, 1),
+                fontFamily: 'Times New Roman',
+              ),
+            ),
+            onTap: () {
+              Navigator.popAndPushNamed(context, "/");
+            },
+          ),
+          ],
           const SizedBox(height: 20.0),
           ListTile(
             title: const Text(
@@ -195,6 +381,7 @@ class _SideBarnavState extends State<SideBarnav> {
           //   ),
           // )
         ],
+        
       ),
     );
   }

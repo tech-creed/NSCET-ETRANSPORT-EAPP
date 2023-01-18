@@ -26,6 +26,7 @@ class AuthService {
         'role': role,
         'dept': dept,
         'regno': regno,
+        'assigned_role': " ",
       });
 
       return null;
