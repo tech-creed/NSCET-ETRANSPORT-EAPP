@@ -173,7 +173,20 @@ class _SideBarnavState extends State<SideBarnav> {
               ),
             ),
             onTap: () {
-              Navigator.popAndPushNamed(context, "/");
+              Navigator.popAndPushNamed(context, "/superior-assign");
+            },
+          ),
+          ListTile(
+            title: const Text(
+              "Track All Bus",
+              style: TextStyle(
+                fontSize: 20,
+                color: Color.fromRGBO(27, 27, 27, 1),
+                fontFamily: 'Times New Roman',
+              ),
+            ),
+            onTap: () {
+              Navigator.popAndPushNamed(context, "/track-buses");
             },
           ),
           ]
