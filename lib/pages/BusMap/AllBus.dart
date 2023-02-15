@@ -72,6 +72,7 @@ class AllBusTrackState extends State<AllBusTrack> {
             List <dynamic> busId = [];
 
             location.clear();
+            markers.clear();
             location = map.values.toList();
             map.forEach((key, value) {
               var long = double.parse(value["longitude"].toString());
