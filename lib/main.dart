@@ -1,4 +1,8 @@
 import 'package:etransport_nscet/pages/BusMap/AllBus.dart';
+import 'package:etransport_nscet/pages/BusMap/SpecificBus.dart';
+import 'package:etransport_nscet/pages/SuperAdmin/AddStop.dart';
+import 'package:etransport_nscet/pages/SuperAdmin/AssignBus.dart';
+import 'package:etransport_nscet/pages/SuperAdmin/AssignRoute.dart';
 import 'package:etransport_nscet/pages/SuperAdmin/AssignSuperior.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +31,11 @@ class MyApp extends StatelessWidget {
         home: const Wrapper(),
         routes: {
           '/superior-assign': (context) => const AssignSuperior(),
+          '/bus-assign': (context) => const AssignBus(),
           '/track-buses': ((context) => const AllBusTrack()),
+          '/specificBus': ((context) => const SpecificBusTrack()),
+          '/route-tracker': ((context) => const AssignRoute()),
+          '/bus-stop': ((context) => const AddStop()),
         },
       ),
     );
