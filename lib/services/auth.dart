@@ -27,6 +27,9 @@ class AuthService {
         'dept': dept,
         'regno': regno,
         'assigned_role': " ",
+        'trackerID': " ",
+        'stop': " ",
+        'route': " ",
       });
 
       return null;

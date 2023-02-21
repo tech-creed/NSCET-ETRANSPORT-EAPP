@@ -24,8 +24,9 @@ class UserData {
     String email = userDetails.value[userId]['email'];
     String regno = userDetails.value[userId]['regno'];
     String assigned = userDetails.value[userId]['assigned_role'];
-
-    print(assigned);
+    String trakerID = userDetails.value[userId]['trakerID'];
+    String stop = userDetails.value[userId]['stop'];
+    String route = userDetails.value[userId]['route'];
     
     prefs.setString('userId', userId);
     prefs.setString('role', role);
@@ -35,5 +36,8 @@ class UserData {
     prefs.setString('email', email);
     prefs.setString('regno', regno);
     prefs.setString('assigned', assigned);
+    prefs.setString('trakerID', trakerID);
+    prefs.setString('stop', stop);
+    prefs.setString('route', route);
   }
 }

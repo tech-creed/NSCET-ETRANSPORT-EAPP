@@ -60,7 +60,7 @@ class SpecificBusTrackState extends State<SpecificBusTrack> {
   );
 
   static const CameraPosition _kLake = CameraPosition(
-      bearing: 0, target: LatLng(10.0020, 77.4731), tilt: 60, zoom: 10);
+      bearing: 0, target: LatLng(10.0020, 77.4731), tilt: 60, zoom: 16.5);
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +81,7 @@ class SpecificBusTrackState extends State<SpecificBusTrack> {
 
                 location.clear();
                 markers.clear();
-                //latLen.clear();
+                
                 location = map.values.toList();
 
                 map.forEach(
@@ -90,11 +90,6 @@ class SpecificBusTrackState extends State<SpecificBusTrack> {
                       var long = double.parse(value["longitude"].toString());
                       var lat = double.parse(value["latitude"].toString());
 
-                      polylines.add(Polyline(
-                        polylineId: PolylineId('1'),
-                        points: latLen,
-                        color: Colors.green,
-                      ));
                       markers.add(Marker(
                         //add first marker
                         markerId: MarkerId(key.toString()),
@@ -119,13 +114,16 @@ class SpecificBusTrackState extends State<SpecificBusTrack> {
                         // then parse the JSON.
                         var data = jsonDecode(response.body);
                         // print(data);
-                        for (var i = 0; i < data.length; i++) {
-                          latLen.add(LatLng(data[i][1], data[i][0]));
+                        if(latLen.length == 0){
+                            for (var i = 0; i < data.length; i++) {
+                            latLen.add(LatLng(data[i][1], data[i][0]));
+                          }
                         }
+                        
                         polylines.add(Polyline(
-                          polylineId: PolylineId('1'),
+                          polylineId: PolylineId('0'),
                           points: latLen,
-                          color: Colors.blue,
+                          color: Color.fromARGB(255, 39, 134, 212),
                         ));
                       } else {
                         // If the server did not return a 200 OK response,
@@ -145,9 +143,6 @@ class SpecificBusTrackState extends State<SpecificBusTrack> {
                   },
                 );
                 //sleep(Duration(seconds: 5));
-
-                print(polylines);
-                print('1');
                 return Scaffold(
                   drawer: const SideBarnav(),
                   appBar: getAppbar(context, "NSCET", isLogout: true),
@@ -164,8 +159,8 @@ class SpecificBusTrackState extends State<SpecificBusTrack> {
                   ),
                   floatingActionButton: FloatingActionButton.extended(
                     onPressed: _goToTheLake,
-                    label: const Text('Track Bus'),
-                    icon: const Icon(Icons.bus_alert),
+                    label: const Text('Route'),
+                    icon: const Icon(Icons.route),
                   ),
                 );
               }
@@ -173,39 +168,39 @@ class SpecificBusTrackState extends State<SpecificBusTrack> {
             }));
   }
 
-  Set<Marker> getmarkers(location, busId) {
-    //markers to place on map
-    setState(() {
-      markers.add(Marker(
-        //add second marker
-        markerId: MarkerId("2"),
-        position: LatLng(10.1020, 77.4631), //position of marker
-        infoWindow: InfoWindow(
-          //popup info
+  // Set<Marker> getmarkers(location, busId) {
+  //   //markers to place on map
+  //   setState(() {
+  //     markers.add(Marker(
+  //       //add second marker
+  //       markerId: MarkerId("2"),
+  //       position: LatLng(10.1020, 77.4631), //position of marker
+  //       infoWindow: InfoWindow(
+  //         //popup info
 
-          title: 'Marker Title Second ',
-          snippet: 'My Custom Subtitle',
-        ),
-        icon: customeIcon, //Icon for Marker
-      ));
+  //         title: 'Marker Title Second ',
+  //         snippet: 'My Custom Subtitle',
+  //       ),
+  //       icon: customeIcon, //Icon for Marker
+  //     ));
 
-      markers.add(Marker(
-        //add third marker
-        markerId: MarkerId("3"),
-        position: LatLng(10.0120, 77.4731), //position of marker
-        infoWindow: InfoWindow(
-          //popup info
-          title: 'Marker Title Third ',
-          snippet: 'My Custom Subtitle',
-        ),
-        icon: customeIcon, //Icon for Marker
-      ));
+  //     markers.add(Marker(
+  //       //add third marker
+  //       markerId: MarkerId("3"),
+  //       position: LatLng(10.0120, 77.4731), //position of marker
+  //       infoWindow: InfoWindow(
+  //         //popup info
+  //         title: 'Marker Title Third ',
+  //         snippet: 'My Custom Subtitle',
+  //       ),
+  //       icon: customeIcon, //Icon for Marker
+  //     ));
 
-      //add more markers here
-    });
+  //     //add more markers here
+  //   });
 
-    return markers;
-  }
+  //   return markers;
+  // }
 
   Future<void> _goToTheLake() async {
     setState(() {});

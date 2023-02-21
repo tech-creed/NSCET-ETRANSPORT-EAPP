@@ -17,6 +17,8 @@ class _SideBarnavState extends State<SideBarnav> {
   String? dept = '';
   String? regno = '';
   String? assigned_role = '';
+  String? trakerID = '';
+
 
   void _setDetails() async {
     final prefs = await SharedPreferences.getInstance();
@@ -25,6 +27,8 @@ class _SideBarnavState extends State<SideBarnav> {
     name = prefs.getString('name');
     regno = prefs.getString('regno');
     assigned_role = prefs.getString('assigned');
+    trakerID = prefs.getString('trakerID');
+
 
     setState(() {
       if (role == 'Parent') {
@@ -132,22 +136,22 @@ class _SideBarnavState extends State<SideBarnav> {
             ),
           ),
           const SizedBox(height: 10.0),
-          if (assigned_role == 'TransportIncharge') ...[
-            ListTile(
-              title: const Text(
-                "Track My Bus",
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Color.fromRGBO(27, 27, 27, 1),
-                  fontFamily: 'Times New Roman',
-                ),
-              ),
-              onTap: () {
-                //Navigator.popAndPushNamed(context, "/");
-                Navigator.pushNamed(context, "/specificBus",
-                    arguments: ['TN-625531']);
-              },
-            ),
+          if (assigned_role == ' ') ...[
+            // ListTile(
+            //   title: const Text(
+            //     "Track My Bus",
+            //     style: TextStyle(
+            //       fontSize: 20,
+            //       color: Color.fromRGBO(27, 27, 27, 1),
+            //       fontFamily: 'Times New Roman',
+            //     ),
+            //   ),
+            //   onTap: () {
+            //     //Navigator.popAndPushNamed(context, "/");
+            //     Navigator.pushNamed(context, "/specificBus",
+            //         arguments: [trakerID]);
+            //   },
+            // ),
             const SizedBox(height: 20.0),
             ListTile(
               title: const Text(
@@ -273,7 +277,7 @@ class _SideBarnavState extends State<SideBarnav> {
             const SizedBox(height: 20.0),
             ListTile(
               title: const Text(
-                "Assign Student / Bus Incharge",
+                "Create / Assign Student",
                 style: TextStyle(
                   fontSize: 20,
                   color: Color.fromRGBO(27, 27, 27, 1),
@@ -419,7 +423,7 @@ class _SideBarnavState extends State<SideBarnav> {
               onTap: () {
                 //Navigator.popAndPushNamed(context, "/");
                 Navigator.pushNamed(context, "/specificBus",
-                    arguments: ['TN-625531']);
+                    arguments: [trakerID]);
               },
             ),
           ],
