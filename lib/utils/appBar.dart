@@ -23,10 +23,7 @@ AppBar getAppbar(context, titleName, {isLogout = false}) {
                   AuthService().signOut();
                 },
                 child: Row(
-                  children: const [
-                    Icon(Icons.logout_outlined),
-                    Text(" Logout")
-                  ],
+                  children: const [Icon(Icons.logout_outlined), Text("Logout")],
                 ),
               )
             : ElevatedButton(

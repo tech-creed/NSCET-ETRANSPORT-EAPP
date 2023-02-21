@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:etransport_nscet/utils/SidebarNav.dart';
@@ -10,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:http/http.dart' as http;
 
 import '../../services/busLocation.dart';
 
@@ -26,6 +28,8 @@ class SpecificBusTrackState extends State<SpecificBusTrack> {
   BusDB busDB = BusDB('');
 
   final Set<Marker> markers = new Set(); //markers for google map
+  final Set<Polyline> polylines = {}; //poly
+  List<LatLng> latLen = [];
   BitmapDescriptor customeIcon = BitmapDescriptor.defaultMarker;
 
   @override
@@ -77,9 +81,8 @@ class SpecificBusTrackState extends State<SpecificBusTrack> {
 
                 location.clear();
                 markers.clear();
+                //latLen.clear();
                 location = map.values.toList();
-                Map<PolylineId, Polyline> polylines =
-                    {}; //polylines to show direction
 
                 map.forEach(
                   (key, value) async {
@@ -87,13 +90,11 @@ class SpecificBusTrackState extends State<SpecificBusTrack> {
                       var long = double.parse(value["longitude"].toString());
                       var lat = double.parse(value["latitude"].toString());
 
-                      LatLng startLocation = LatLng(lat, long);
-                      LatLng endLocation = LatLng(10.030393, 77.505875);
-                      PolylinePoints polylinePoints = PolylinePoints();
-                      String googleAPiKey =
-                          "AIzaSyDU0Ukpbhgqqt-hA1WvmM9s7tip-OR_E8o";
-                      Map<PolylineId, Polyline> polylines = {};
-
+                      polylines.add(Polyline(
+                        polylineId: PolylineId('1'),
+                        points: latLen,
+                        color: Colors.green,
+                      ));
                       markers.add(Marker(
                         //add first marker
                         markerId: MarkerId(key.toString()),
@@ -106,41 +107,47 @@ class SpecificBusTrackState extends State<SpecificBusTrack> {
                         ),
                         icon: customeIcon, //Icon for Marker
                       ));
-                      List<LatLng> polylineCoordinates = [];
 
-                      PolylineResult result =
-                          await polylinePoints.getRouteBetweenCoordinates(
-                        googleAPiKey,
-                        PointLatLng(
-                            startLocation.latitude, startLocation.longitude),
-                        PointLatLng(
-                            endLocation.latitude, endLocation.longitude),
-                        travelMode: TravelMode.driving,
-                      );
+                      final response = await http.get(Uri.parse(
+                          'https://nscet-etransport-server.onrender.com/bus/route/' +
+                              lat.toString() +
+                              '/' +
+                              long.toString()));
 
-                      if (result.points.isNotEmpty) {
-                        result.points.forEach((PointLatLng point) {
-                          polylineCoordinates
-                              .add(LatLng(point.latitude, point.longitude));
-                        });
+                      if (response.statusCode == 200) {
+                        // If the server did return a 200 OK response,
+                        // then parse the JSON.
+                        var data = jsonDecode(response.body);
+                        // print(data);
+                        for (var i = 0; i < data.length; i++) {
+                          latLen.add(LatLng(data[i][1], data[i][0]));
+                        }
+                        polylines.add(Polyline(
+                          polylineId: PolylineId('1'),
+                          points: latLen,
+                          color: Colors.blue,
+                        ));
                       } else {
-                        print(result.errorMessage);
+                        // If the server did not return a 200 OK response,
+                        // then throw an exception.
+                        throw Exception('Failed to load album');
                       }
-                      addPolyLine(List<LatLng> polylineCoordinates) {
-                        PolylineId id = PolylineId("poly");
-                        Polyline polyline = Polyline(
-                          polylineId: id,
-                          color: Colors.deepPurpleAccent,
-                          points: polylineCoordinates,
-                          width: 8,
-                        );
-                        polylines[id] = polyline;
-                        setState(() {});
-                      }
+
+                      // if (result.points.isNotEmpty) {
+                      //   result.points.forEach((PointLatLng point) {
+                      //     polylineCoordinates
+                      //         .add(LatLng(point.latitude, point.longitude));
+                      //   });
+                      // } else {
+                      //   print(result.errorMessage);
+                      // }
                     }
                   },
                 );
+                //sleep(Duration(seconds: 5));
 
+                print(polylines);
+                print('1');
                 return Scaffold(
                   drawer: const SideBarnav(),
                   appBar: getAppbar(context, "NSCET", isLogout: true),
@@ -150,7 +157,7 @@ class SpecificBusTrackState extends State<SpecificBusTrack> {
                     markers: markers, //markers to show on map
                     mapType: MapType.hybrid, //10.030393, 77.505875
                     initialCameraPosition: _kGooglePlex,
-                    polylines: Set<Polyline>.of(polylines.values), //polylines
+                    polylines: polylines, //polylines
                     onMapCreated: (GoogleMapController controller) {
                       _controller.complete(controller);
                     },
@@ -201,6 +208,7 @@ class SpecificBusTrackState extends State<SpecificBusTrack> {
   }
 
   Future<void> _goToTheLake() async {
+    setState(() {});
     final GoogleMapController controller = await _controller.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
   }

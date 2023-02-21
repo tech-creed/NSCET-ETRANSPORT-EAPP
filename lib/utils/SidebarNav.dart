@@ -239,7 +239,7 @@ class _SideBarnavState extends State<SideBarnav> {
                 ),
               ),
               onTap: () {
-                Navigator.popAndPushNamed(context, "/");
+                Navigator.popAndPushNamed(context, "/bus-assign");
               },
             ),
             const SizedBox(height: 20.0),
@@ -253,7 +253,21 @@ class _SideBarnavState extends State<SideBarnav> {
                 ),
               ),
               onTap: () {
-                Navigator.popAndPushNamed(context, "/");
+                Navigator.popAndPushNamed(context, "/route-tracker");
+              },
+            ),
+            const SizedBox(height: 20.0),
+            ListTile(
+              title: const Text(
+                "Create Stops",
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Color.fromRGBO(27, 27, 27, 1),
+                  fontFamily: 'Times New Roman',
+                ),
+              ),
+              onTap: () {
+                Navigator.popAndPushNamed(context, "/bus-stop");
               },
             ),
             const SizedBox(height: 20.0),
@@ -267,7 +281,7 @@ class _SideBarnavState extends State<SideBarnav> {
                 ),
               ),
               onTap: () {
-                Navigator.popAndPushNamed(context, "/");
+                Navigator.popAndPushNamed(context, "/student-assign");
               },
             ),
           ] else if (assigned_role == 'BusIncharge') ...[
