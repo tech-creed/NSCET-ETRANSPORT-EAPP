@@ -23,16 +23,16 @@ class BusDB {
     print(roles);
   }
 
-  void deleteClass(className) async {
-    dynamic classDb = database.child("/classes/" + dept + '/classes_list');
-    dynamic value = await classDb.get();
-    dynamic classList = value.value.toList();
-    bool isRemoved = classList.remove(className);
-    if (isRemoved) {
-      classDb.set(classList);
-    }
+  // void deleteClass(className) async {
+  //   dynamic classDb = database.child("/classes/" + dept + '/classes_list');
+  //   dynamic value = await classDb.get();
+  //   dynamic classList = value.value.toList();
+  //   bool isRemoved = classList.remove(className);
+  //   if (isRemoved) {
+  //     classDb.set(classList);
+  //   }
 
-    classDb = database.child("/classes/" + dept + "/" + className);
-    await classDb.remove();
-  }
+  //   classDb = database.child("/classes/" + dept + "/" + className);
+  //   await classDb.remove();
+  // }
 }

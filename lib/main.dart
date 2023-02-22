@@ -5,7 +5,7 @@ import 'package:etransport_nscet/pages/SuperAdmin/AssignBus.dart';
 import 'package:etransport_nscet/pages/SuperAdmin/AssignRoute.dart';
 import 'package:etransport_nscet/pages/SuperAdmin/AssignSuperior.dart';
 import 'package:etransport_nscet/pages/TransportIncharge/AssignBusIncharge.dart';
-import 'package:etransport_nscet/pages/TransportIncharge/AssignStudentStop.dart';
+import 'package:etransport_nscet/pages/TransportIncharge/CreateStudent.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:etransport_nscet/pages/Wrapper.dart';
@@ -38,8 +38,8 @@ class MyApp extends StatelessWidget {
           '/specificBus': ((context) => const SpecificBusTrack()),
           '/route-tracker': ((context) => const AssignRoute()),
           '/bus-stop': ((context) => const AddStop()),
-          '/student-assign': ((context)=>const AssignStudent()),
-          '/busincharge-assign': ((context)=>const AssignIncharge()),
+          '/student-assign': ((context) => const AssignStudent()),
+          '/busincharge-assign': ((context) => const AllBusTrack()),
         },
       ),
     );

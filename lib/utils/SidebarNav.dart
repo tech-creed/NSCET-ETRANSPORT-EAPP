@@ -19,7 +19,6 @@ class _SideBarnavState extends State<SideBarnav> {
   String? assigned_role = '';
   String? trakerID = '';
 
-
   void _setDetails() async {
     final prefs = await SharedPreferences.getInstance();
     role = prefs.getString('role');
@@ -28,7 +27,6 @@ class _SideBarnavState extends State<SideBarnav> {
     regno = prefs.getString('regno');
     assigned_role = prefs.getString('assigned');
     trakerID = prefs.getString('trakerID');
-
 
     setState(() {
       if (role == 'Parent') {
@@ -217,6 +215,19 @@ class _SideBarnavState extends State<SideBarnav> {
               ),
               onTap: () {
                 Navigator.popAndPushNamed(context, "/bus-stop");
+              },
+            ),
+            ListTile(
+              title: const Text(
+                "Create / Assign Student",
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Color.fromRGBO(27, 27, 27, 1),
+                  fontFamily: 'Times New Roman',
+                ),
+              ),
+              onTap: () {
+                Navigator.popAndPushNamed(context, "/student-assign");
               },
             ),
             ListTile(

@@ -14,8 +14,11 @@ class UserData {
     final userDb = database.child("/users");
     final prefs = await SharedPreferences.getInstance();
 
-    dynamic userDetails = await userDb.orderByChild('user_id').equalTo(_auth.currentUser!.uid).get();
-    
+    dynamic userDetails = await userDb
+        .orderByChild('user_id')
+        .equalTo(_auth.currentUser!.uid)
+        .get();
+
     String userId = userDetails.value.entries.elementAt(0).key;
     String role = userDetails.value[userId]['role'];
     String authUserId = userDetails.value[userId]['user_id'];
@@ -24,10 +27,10 @@ class UserData {
     String email = userDetails.value[userId]['email'];
     String regno = userDetails.value[userId]['regno'];
     String assigned = userDetails.value[userId]['assigned_role'];
-    String trakerID = userDetails.value[userId]['trakerID'];
+    String trakerID = userDetails.value[userId]['trackerID'];
     String stop = userDetails.value[userId]['stop'];
     String route = userDetails.value[userId]['route'];
-    
+
     prefs.setString('userId', userId);
     prefs.setString('role', role);
     prefs.setString('authUserId', authUserId);
