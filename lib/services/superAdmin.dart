@@ -25,6 +25,13 @@ class AdminDB {
     userUpdate.update({"assigned_role":"HOD-"+dept});
     return "HOD Assigned";
   }
+
+  Future<String> assignBusIncharge(String user, String routeID) async{
+    dynamic userGet = await database.child('/users').orderByChild('user_id').equalTo(user).get();
+    dynamic userUpdate = await database.child('/users/'+userGet.value.entries.elementAt(0).key);
+    userUpdate.update({"assigned_role":"BusIncharge","trackerID":routeID});
+    return "BusIncharge Assigned";
+  }
   // Future<String> setBusInchargeFacultyRole(String user) async{
   //   dynamic userGet = await database.child('/users').orderByChild('user_id').equalTo(user).get();
   //   dynamic userUpdate = await database.child('/users/'+userGet.value.entries.elementAt(0).key);

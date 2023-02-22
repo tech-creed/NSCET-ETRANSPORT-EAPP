@@ -1,3 +1,6 @@
+import 'dart:async';  
+import 'package:etransport_nscet/pages/BusIncharge/BusStrength.dart';
+import 'package:flutter/material.dart';  
 import 'package:etransport_nscet/pages/BusMap/AllBus.dart';
 import 'package:etransport_nscet/pages/BusMap/SpecificBus.dart';
 import 'package:etransport_nscet/pages/SuperAdmin/AddStop.dart';
@@ -12,20 +15,57 @@ import 'package:etransport_nscet/pages/Wrapper.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:etransport_nscet/services/auth.dart';
 import 'package:provider/provider.dart';
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  
+void main() async { 
+    WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  runApp(MyApp());
+  }  
 
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of application.
-  @override
-  Widget build(BuildContext context) {
+class MyApp extends StatelessWidget {  
+  @override  
+  Widget build(BuildContext context) {  
+    return MaterialApp(  
+      home: MyHomePage(),  
+      debugShowCheckedModeBanner: false,  
+    );  
+  }  
+}  
+  
+class MyHomePage extends StatefulWidget {  
+  @override  
+  SplashScreenState createState() => SplashScreenState();  
+}  
+class SplashScreenState extends State<MyHomePage> {  
+  @override  
+  void initState() {  
+    super.initState();  
+    Timer(Duration(seconds: 3),  
+            ()=>Navigator.pushReplacement(context,  
+            MaterialPageRoute(builder:  
+                (context) => HomeScreen()  
+            )  
+         )  
+    );  
+  }  
+  @override  
+  Widget build(BuildContext context) {  
+    return Container(  
+        color: Color.fromARGB(255, 255, 255, 255),  
+        child:Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("images/logo.png"),
+          fit: BoxFit.fitWidth,
+        ),
+      ),)
+    );  
+  }  
+}  
+class HomeScreen extends StatelessWidget { 
+  const HomeScreen({Key? key}) : super(key: key); 
+  @override  
+  Widget build(BuildContext context) {  
     return StreamProvider.value(
       value: AuthService().user,
       initialData: null,
@@ -39,36 +79,10 @@ class MyApp extends StatelessWidget {
           '/route-tracker': ((context) => const AssignRoute()),
           '/bus-stop': ((context) => const AddStop()),
           '/student-assign': ((context) => const AssignStudent()),
-          '/busincharge-assign': ((context) => const AllBusTrack()),
+          '/faculty-assign': ((context) => const AssignIncharge()),
+          '/bus-strength': ((context) => const BusStrength()),
         },
       ),
     );
   }
 }
-
-// body: StreamBuilder(stream: adminDB.getFaculty(),builder: (context, snapshot) {
-        //   final tilesList = <Widget>[];
-
-        //   if (snapshot.hasData && !snapshot.hasError && snapshot.data != null) {
-        //     final contents = (snapshot.data as DatabaseEvent).snapshot.value;
-        //     print(contents);
-        //     // if (contents != null) {
-        //     //   for (int i = 0; i < contents.length; i++) {
-        //     //     tilesList.add(
-        //     //       const Divider(
-        //     //         height: 20,
-        //     //         thickness: 2,
-        //     //         indent: 1,
-        //     //         endIndent: 1,
-        //     //       ),
-        //     //     );
-        //     //   }
-        //     // } else {
-              
-        //     // }
-        //   }
-        //   return ListView(
-        //     padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
-        //     children: tilesList,
-        //   );
-        // }),

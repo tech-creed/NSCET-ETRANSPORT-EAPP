@@ -60,7 +60,7 @@ class SpecificBusTrackState extends State<SpecificBusTrack> {
   );
 
   static const CameraPosition _kLake = CameraPosition(
-      bearing: 0, target: LatLng(10.0020, 77.4731), tilt: 60, zoom: 16.5);
+      bearing: 0, target: LatLng(10.030093, 77.506366), tilt: 60, zoom: 16.5);
 
   @override
   Widget build(BuildContext context) {
