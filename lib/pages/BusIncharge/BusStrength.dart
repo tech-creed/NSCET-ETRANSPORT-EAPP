@@ -47,25 +47,23 @@ class _BusStrengthState extends State<BusStrength
   void _setDetails() async {
     final prefs = await SharedPreferences.getInstance();
     assigned_role = prefs.getString('assigned');
-    trackerID = prefs.getString('trackerID');
 
     setState(() {
-      assigned_role = assigned_role;
-      trackerID = trackerID;
-      print(trackerID);
     });
   }
 
   @override
   void initState() {
-    _setDetails();
+
   }
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as List;
+    final tilesList = <Widget>[];
     return Scaffold(
         drawer: const SideBarnav(),
-        appBar: getAppbar(context, trackerID, isLogout: true),
+        appBar: getAppbar(context, args[0], isLogout: true),
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
           child: Icon(
@@ -95,9 +93,51 @@ class _BusStrengthState extends State<BusStrength
 
                 busesNumber.clear();
                 trackerId.clear();
-
+                var countStudent = 0;
                 map.forEach(
                   (key, value) {
+                    countStudent += 1;
+                    if(value['trackerID'] == args[0]){
+                      tilesList.add(ListTile(
+                    tileColor: Color.fromRGBO(0, 45, 77, 0.35),
+                    title: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              value['Name'],
+                              textAlign: TextAlign.left,
+                              style: const TextStyle(fontSize: 20),
+                            ),
+                            Text(
+                              value['regNo'],
+                              textAlign: TextAlign.left,
+                              style: const TextStyle(fontSize: 20),
+                            ),
+                            Text(
+                              value['Stop'],
+                              textAlign: TextAlign.left,
+                              style: const TextStyle(fontSize: 20),
+                            ),
+                          ],
+                        ),
+                        
+                      ],
+                    )));
+                      tilesList.add(
+                        const Divider(
+                          height: 20,
+                          thickness: 2,
+                          indent: 1,
+                          endIndent: 1,
+                        ),
+                        
+                      );
+                    }
                     busesNumber.add(DropdownMenuItem(
                       child: Text(value['busNumber'].toString()),
                       value: key.toString(),
@@ -108,118 +148,19 @@ class _BusStrengthState extends State<BusStrength
                     ));
                   },
                 );
-
-                return SingleChildScrollView(
-                  child: Container(
-                    padding: EdgeInsets.all(20.0),
-                    child: Form(
-                      key: _formkey,
-                      child: Column(
-                        children: <Widget>[
-                          const SizedBox(height: 30.0),
-                          Text(
-                            "Create Student",
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontFamily: 'Times New Roman',
-                            ),
-                          ),
-                          const SizedBox(height: 10.0),
-                          TextFormField(
-                              validator: (val) =>
-                                  val!.isEmpty ? 'Enter your name' : null,
-                              decoration: const InputDecoration(
-                                icon: Icon(
-                                  Icons.person,
-                                  color: Color.fromRGBO(78, 138, 186, 1),
-                                ),
-                                labelText: 'Student Name',
-                                labelStyle: TextStyle(
-                                    color: Color.fromRGBO(0, 45, 77, 1)),
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Color.fromRGBO(9, 83, 145, 1),
-                                      width: 1.5),
-                                ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Color.fromRGBO(78, 138, 186, 1),
-                                      width: 1.5),
-                                ),
-                              ),
-                              onChanged: (val) {
-                                setState(() {
-                                  busName = val;
-                                });
-                              }),
-                          TextFormField(
-                              validator: (val) =>
-                                  val!.isEmpty ? 'Enter Number' : null,
-                              decoration: const InputDecoration(
-                                icon: Icon(
-                                  Icons.numbers_sharp,
-                                  color: Color.fromRGBO(78, 138, 186, 1),
-                                ),
-                                labelText: 'Register Number',
-                                labelStyle: TextStyle(
-                                    color: Color.fromRGBO(0, 45, 77, 1)),
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Color.fromRGBO(9, 83, 145, 1),
-                                      width: 1.5),
-                                ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Color.fromRGBO(78, 138, 186, 1),
-                                      width: 1.5),
-                                ),
-                              ),
-                              onChanged: (val) {
-                                setState(() {
-                                  busNumber = val;
-                                });
-                              }),
-                          const SizedBox(height: 20.0),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                primary: const Color.fromRGBO(35, 123, 196, 1),
-                                padding:
-                                    const EdgeInsets.fromLTRB(25, 8, 25, 8)),
-                            onPressed: () async {
-                              dynamic result =
-                                  await busDB.createBus(busName, busNumber);
-                              if (result != null) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                    getSnackBar(result.toString()));
-                              }
-                              // if (_formkey.currentState!.validate()) {
-
-                              //   // dynamic result = await _auth.register(email, password, name, role, dept, regno);
-                              //   // if (result != null) {
-                              //   //   ScaffoldMessenger.of(context).showSnackBar(getSnackBar(result.message.toString()));
-                              //   // }
-                              // }
-                            },
-                            child: const Text(
-                              "Craete Bus",
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.white,
-                                fontFamily: 'Times New Roman',
-                              ),
-                            ),
-                          ),
-                          const Divider(
-                            height: 20,
-                            thickness: 2,
-                            indent: 1,
-                            endIndent: 1,
-                          ),
-                          
-                        ],
-                      ),
-                    ),
+                tilesList.insert(0,ListTile(
+                title: Padding(
+                  padding: EdgeInsets.fromLTRB(2, 8, 2, 8),
+                  child: Text(
+                    "Total number of students : " + countStudent.toString(),
+                    textAlign: TextAlign.start,
+                    style: const TextStyle(fontSize: 16),
                   ),
+                ),
+              ));
+                return ListView(
+                  padding: const EdgeInsets.fromLTRB(10, 8, 10, 80),
+                  children: tilesList,
                 );
               }
               return Text("Loading.........");

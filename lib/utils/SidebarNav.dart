@@ -337,7 +337,7 @@ class _SideBarnavState extends State<SideBarnav> {
                 ),
               ),
               onTap: () {
-                Navigator.popAndPushNamed(context, "/bus-strength");
+                Navigator.popAndPushNamed(context, "/bus-strength", arguments: [trakerID]);
               },
             ),
             ListTile(
@@ -365,7 +365,7 @@ class _SideBarnavState extends State<SideBarnav> {
               onTap: () {
                 //Navigator.popAndPushNamed(context, "/");
                 Navigator.pushNamed(context, "/specificBus",
-                    arguments: ['TN-625531']);
+                    arguments: [trakerID]);
               },
             ),
           ] else if (assigned_role == 'HOD') ...[
