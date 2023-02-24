@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'dart:async';
+import 'package:etransport_nscet/services/service.dart';
 import 'package:flutter/material.dart';
 import 'package:etransport_nscet/utils/SidebarNav.dart';
 import 'package:etransport_nscet/utils/appBar.dart';
@@ -16,11 +17,29 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   String? assigned_role = '';
+  String? distance = '';
+  String? hr = '';
+  String? min = '';
+  String? stop = '';
+  String? route = '';
+
+  ServiceDb service = ServiceDb('');
 
   void _setDetails() async {
     final prefs = await SharedPreferences.getInstance();
     assigned_role = prefs.getString('assigned');
-    print(assigned_role);
+    if(assigned_role == 'Faculty' ||
+      assigned_role == 'Parent' ||
+      assigned_role == 'HOD' ||
+      assigned_role == 'BusIncharge'){
+        dynamic values = await service.getBus();
+        distance = values[0].toString();
+        hr = values[1].toString();
+        min = values[2].toString();
+        route = values[3].toString();
+        stop = values[4].toString();
+    }
+    
     setState(() {
       assigned_role = assigned_role;
     });
@@ -102,36 +121,28 @@ class _HomeState extends State<Home> {
                             assigned_role == 'BusIncharge') ...[
                           const Expanded(
                               child:
-                                  Icon(Icons.bus_alert_outlined, size: 65.0)),
+                                  Icon(Icons.bus_alert_outlined,color: Color.fromRGBO(255, 255, 255, 1), size: 65.0)),
                           Expanded(
                             child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  RichText(
-                                    text: const TextSpan(
-                                      style: TextStyle(
-                                          color: Color.fromARGB(
-                                              255, 255, 255, 255),
-                                          fontSize: 25),
-                                      children: <TextSpan>[
-                                        TextSpan(text: 'Status : '),
-                                        TextSpan(
-                                            text: 'Online',
-                                            style: TextStyle(
-                                                color: Color.fromARGB(
-                                                    255, 33, 243, 61)))
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(height: 10.0),
-                                  const Text(
-                                    "Stop : Muthu Nagar",
+                                  Text(
+                                    route.toString(),
                                     style: TextStyle(fontSize: 20.0),
                                   ),
                                   SizedBox(height: 10.0),
-                                  const Text(
-                                    "Arrivies In : 10 min",
+                                  Text(
+                                    stop.toString(),
+                                    style: TextStyle(fontSize: 20.0),
+                                  ),
+                                  SizedBox(height: 10.0),
+                                 Text(
+                                    "$hr Hr | $min Min",
+                                    style: TextStyle(fontSize: 20.0),
+                                  ),
+                                  Text(
+                                    "$distance Km",
                                     style: TextStyle(fontSize: 20.0),
                                   ),
                                 ]),
