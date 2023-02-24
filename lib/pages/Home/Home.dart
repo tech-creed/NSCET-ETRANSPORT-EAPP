@@ -23,11 +23,16 @@ class _HomeState extends State<Home> {
   String? stop = '';
   String? route = '';
 
+  String? trakerID = '';
+
+
   ServiceDb service = ServiceDb('');
 
   void _setDetails() async {
     final prefs = await SharedPreferences.getInstance();
     assigned_role = prefs.getString('assigned');
+    trakerID = prefs.getString('trakerID');
+
     if(assigned_role == 'Faculty' ||
       assigned_role == 'Parent' ||
       assigned_role == 'HOD' ||
@@ -41,6 +46,7 @@ class _HomeState extends State<Home> {
     }
     
     setState(() {
+      trakerID= trakerID;
       assigned_role = assigned_role;
     });
   }
@@ -181,7 +187,7 @@ class _HomeState extends State<Home> {
                                 children: [
                                   SizedBox(height: 10.0),
                                   const Text(
-                                    "Network Error",
+                                    "Loading.......",
                                     style: TextStyle(fontSize: 20.0),
                                   ),
                                   RichText(
@@ -256,7 +262,7 @@ class _HomeState extends State<Home> {
                               alignment: Alignment.center,
                             ),
                             onPressed: () {
-                              Navigator.pushNamed(context, "/");
+                              Navigator.pushNamed(context, "/bus-news");
                             },
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -284,7 +290,7 @@ class _HomeState extends State<Home> {
                               alignment: Alignment.center,
                             ),
                             onPressed: () {
-                              Navigator.pushNamed(context, "/");
+                              Navigator.pushNamed(context, "/bus-strength", arguments: [trakerID]);
                             },
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -292,7 +298,7 @@ class _HomeState extends State<Home> {
                               children: const [
                                 Icon(Icons.person, size: 65.0),
                                 Text(
-                                  "Mark Attendance",
+                                  "Attendance",
                                   style: TextStyle(fontSize: 25.0),
                                 ),
                               ],

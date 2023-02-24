@@ -31,7 +31,19 @@ class ServiceDb {
     });
   }
 
+  Future<Object?> getBusNews(String? trakerID) async {
+    final routeBd = database.child("/routes");
+    dynamic routeDetails = await routeBd
+            .orderByChild('routeID')
+            .equalTo(route)
+            .get();
+    final stopBd = database.child("/routes/"+routeDetails.value.entries.elementAt(0).key+'/news');
+    var value = await stopBd.get();
+    return value.value;
+  }
+
   Future<Object?> getBus() async {
+    // print(trackerId);
     dynamic busDb = database.child("/live/"+trackerId);
     dynamic busValue = await busDb.get();
 
@@ -67,5 +79,16 @@ class ServiceDb {
     
     //print(value.value.values.toList());
     //return busValue.value.values.toList();
+  }
+ Future<String> updateNews(String? trakerID, String latestNews) async{
+    final routeBd = database.child("/routes");
+    dynamic routeDetails = await routeBd
+            .orderByChild('routeID')
+            .equalTo(route)
+            .get();
+    final stopBd = database.child("/routes/"+routeDetails.value.entries.elementAt(0).key);
+    stopBd.update({"news":latestNews});
+
+    return "Updated";
   }
 }

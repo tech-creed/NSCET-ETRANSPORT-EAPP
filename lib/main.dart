@@ -1,5 +1,6 @@
 import 'dart:async';  
 import 'package:etransport_nscet/pages/BusIncharge/BusStrength.dart';
+import 'package:etransport_nscet/pages/BusIncharge/InchargeDetail.dart';
 import 'package:flutter/material.dart';  
 import 'package:etransport_nscet/pages/BusMap/AllBus.dart';
 import 'package:etransport_nscet/pages/BusMap/SpecificBus.dart';
@@ -81,6 +82,7 @@ class HomeScreen extends StatelessWidget {
           '/student-assign': ((context) => const AssignStudent()),
           '/faculty-assign': ((context) => const AssignIncharge()),
           '/bus-strength': ((context) => const BusStrength()),
+          '/bus-news': ((context) => const BusNews()),
         },
       ),
     );

@@ -316,7 +316,7 @@ class _SideBarnavState extends State<SideBarnav> {
           ] else if (assigned_role == 'BusIncharge') ...[
             ListTile(
               title: const Text(
-                "Mark Attendance",
+                "Attendance",
                 style: TextStyle(
                   fontSize: 20,
                   color: Color.fromRGBO(27, 27, 27, 1),
@@ -324,7 +324,20 @@ class _SideBarnavState extends State<SideBarnav> {
                 ),
               ),
               onTap: () {
-                Navigator.popAndPushNamed(context, "/");
+                Navigator.popAndPushNamed(context, "/bus-strength", arguments: [trakerID]);
+              },
+            ),
+            ListTile(
+              title: const Text(
+                "Information",
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Color.fromRGBO(27, 27, 27, 1),
+                  fontFamily: 'Times New Roman',
+                ),
+              ),
+              onTap: () {
+                Navigator.popAndPushNamed(context, "/bus-news");
               },
             ),
             ListTile(
