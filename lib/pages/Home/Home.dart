@@ -318,7 +318,7 @@ class _HomeState extends State<Home> {
                               alignment: Alignment.center,
                             ),
                             onPressed: () {
-                              Navigator.pushNamed(context, "/");
+                              Navigator.pushNamed(context, "/route-tracker");
                             },
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -345,7 +345,7 @@ class _HomeState extends State<Home> {
                               alignment: Alignment.center,
                             ),
                             onPressed: () {
-                              Navigator.pushNamed(context, "/");
+                              Navigator.pushNamed(context, "/bus-assign");
                             },
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -359,7 +359,7 @@ class _HomeState extends State<Home> {
                               ],
                             ),
                           ),
-                        ),
+                        )
                       ],
                     ],
                   ),

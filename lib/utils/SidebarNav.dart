@@ -313,6 +313,19 @@ class _SideBarnavState extends State<SideBarnav> {
                 Navigator.popAndPushNamed(context, "/faculty-assign");
               },
             ),
+            ListTile(
+              title: const Text(
+                "Track All Bus",
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Color.fromRGBO(27, 27, 27, 1),
+                  fontFamily: 'Times New Roman',
+                ),
+              ),
+              onTap: () {
+                Navigator.popAndPushNamed(context, "/track-buses");
+              },
+            ),
           ] else if (assigned_role == 'BusIncharge') ...[
             ListTile(
               title: const Text(
